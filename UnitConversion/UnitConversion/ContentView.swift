@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @FocusState private var isFocused: Bool
     @State private var temperature = 0.0
     @State private var startingUnit = "°F"
     @State private var endingUnit = "°C"
@@ -49,6 +50,8 @@ struct ContentView: View {
             Form {
                 Section("Starting unit") {
                     TextField("Temperature", value: $temperature, format: .number)
+                        .keyboardType(.decimalPad)
+                        .focused($isFocused)
                 }
                 
                 Section("Conversion") {
@@ -70,6 +73,14 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Unit Converter")
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        isFocused = false
+                    }
+                }
+            }
         }
     }
 }
