@@ -80,7 +80,7 @@ struct ContentView: View {
                 askQuestion()
             }
         } message: {
-            Text("You're final score was \(score)/8")
+            Text("Your final score was \(score)/8")
         }
     }
     
